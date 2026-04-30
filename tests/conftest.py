@@ -93,13 +93,20 @@ def ensure_artifacts():
     tuned_path    = ROOT / "models" / "tuned_model.pkl"
     baseline_path = ROOT / "models" / "baseline.pkl"
 
-    need_data  = not cleaned_path.exists() or not features_path.exists()
-    need_model = not tuned_path.exists() or not baseline_path.exists()
+    need_data     = not cleaned_path.exists() or not features_path.exists()
+    need_tuned    = not tuned_path.exists()
+    need_baseline = not baseline_path.exists()
 
-    if not need_data and not need_model:
-        return   # real artifacts present — nothing to do
+    # If data is missing, synthetic models must be regenerated too — mixing
+    # real data with synthetic models (or vice versa) produces inconsistent state.
+    if need_data:
+        need_tuned    = True
+        need_baseline = True
 
-    print("\n[conftest] Real artifacts not found — generating synthetic fixtures for CI...")
+    if not need_data and not need_tuned and not need_baseline:
+        return   # all artifacts present — nothing to do
+
+    print("\n[conftest] Generating synthetic fixtures for CI...")
 
     (ROOT / "data").mkdir(exist_ok=True)
     (ROOT / "models").mkdir(exist_ok=True)
@@ -115,8 +122,11 @@ def ensure_artifacts():
     else:
         features = pd.read_csv(features_path)
 
-    if need_model:
+    if need_tuned or need_baseline:
         model = _train_synthetic_model(features)
-        joblib.dump(model, tuned_path)
-        joblib.dump(model, baseline_path)
-        print(f"[conftest]   wrote tuned_model.pkl + baseline.pkl")
+        if need_tuned:
+            joblib.dump(model, tuned_path)
+            print("[conftest]   wrote tuned_model.pkl")
+        if need_baseline:
+            joblib.dump(model, baseline_path)
+            print("[conftest]   wrote baseline.pkl")
