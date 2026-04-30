@@ -1,5 +1,17 @@
-/data/
-/models/
+# Raw and intermediate training data (large files, not needed by the app)
+/data/creditcard.csv
+/data/cleaned.csv
+/data/features.csv
+
+# Intermediate model artifacts
+/models/baseline.pkl
+/models/xgboost.pkl
+/models/randomforest.pkl
+/models/lightgbm.pkl
+
+# App data files (predictions.csv, model_results.json) and tuned model ARE committed
+# so Streamlit Cloud can serve the app without needing to retrain.
+
 .env
 __pycache__/
 .ipynb_checkpoints/

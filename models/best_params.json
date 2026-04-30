@@ -1,0 +1,13 @@
+{
+  "model": "XGBoost",
+  "cv_roc_auc": 0.9845383704990054,
+  "n_estimators": 175,
+  "max_depth": 7,
+  "learning_rate": 0.019092053137374016,
+  "subsample": 0.6206311463393182,
+  "colsample_bytree": 0.5013757785563149,
+  "min_child_weight": 1,
+  "gamma": 3.9803081616813563,
+  "reg_alpha": 0.002286126171275298,
+  "reg_lambda": 0.0926201183480401
+}
