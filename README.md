@@ -2,7 +2,7 @@
 
 > End-to-end ML pipeline that catches fraudulent transactions with **0.9821 ROC-AUC** on a 284k-row, 599:1 imbalanced dataset — with an interactive Streamlit portfolio app and full CI/CD.
 
-🔴 **[Live Demo →](https://your-app-url-here.streamlit.app)** &nbsp;|&nbsp; 📓 **[EDA Notebook](notebooks/eda.ipynb)** &nbsp;|&nbsp; ⚙️ **[CI Status](https://github.com/shkim22/fraud_detection/actions)**
+🔴 **[Live Demo →](https://frauddetection-cmhlhdlis68swc83btd7sm.streamlit.app/)** &nbsp;|&nbsp; 📓 **[EDA Notebook](notebooks/eda.ipynb)** &nbsp;|&nbsp; ⚙️ **[CI Status](https://github.com/shkim22/fraud_detection/actions)**
 
 ---
 
